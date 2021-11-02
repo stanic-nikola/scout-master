@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="67dd88d191274c10a38c7e9d9b18aaa8" Name="Diagram1">
+        <EntityTypeShape EntityType="ScoutMasterModel.Admin" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoutMasterModel.Igrac" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoutMasterModel.Korisnik" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoutMasterModel.OmiljeniIgraci" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoutMasterModel.Ucinak" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScoutMasterModel.Utakmica" Width="1.5" PointX="3.75" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="ScoutMasterModel.FK__OmiljeniI__IDIgr__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoutMasterModel.FK__Ucinak__IDigraca__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoutMasterModel.FK__OmiljeniI__IDKor__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="ScoutMasterModel.FK__Ucinak__IDutakmi__440B1D61" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

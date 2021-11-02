@@ -1,0 +1,125 @@
+﻿@model ScoutMaster.Models.UcinakBO
+
+@{
+    ViewBag.Title = "ObrisiUcinak";
+}
+
+<body class="pozadina-obrisi">
+    <h2 style="color: white; margin-top: 50px;">Da li ste sigurni da želite da obrišete ovaj učinak?</h2>
+    <div>
+        <hr />
+
+        @using (Html.BeginForm())
+        {
+    <dl class="dl-horizontal" style="color: white; margin-top: 15px; font-size: 16px;">
+        @Html.HiddenFor(model => model.RefIdUtakmice)
+        @Html.Hidden("IDUcinka", (ScoutMaster.Models.UcinakBO)ViewBag.Ucinak)
+        @Html.HiddenFor(model => model.RefIdIgraca)
+        @* <dt style="">
+            @Html.DisplayNameFor(model => model.IDUcinka):
+            @Html.Hidden("IDUcinka", (ScoutMaster.Models.UcinakBO)ViewBag.Ucinak)
+        </dt>*@
+
+        @*<dd>
+            @Html.DisplayFor(model => model.IDUcinka)
+        </dd>*@
+
+        @*<dt style="margin-top: 6px;">
+            @Html.DisplayNameFor(model => model.RefIdUtakmice):
+            @Html.HiddenFor(model => model.RefIdUtakmice)
+        </dt>
+
+        <dd style="margin-top: 6px;">
+            @Html.DisplayFor(model => model.RefIdUtakmice)
+        </dd>
+
+        <dt style="margin-top: 6px;">
+            @Html.DisplayNameFor(model => model.RefIdIgraca):
+            @Html.HiddenFor(model => model.RefIdIgraca)
+        </dt>
+
+        <dd style="margin-top: 6px;">
+            @Html.DisplayFor(model => model.RefIdIgraca)
+        </dd>*@
+
+        <dt style="margin-top: 6px;">
+            @Html.DisplayNameFor(model => model.Golovi):
+            @Html.HiddenFor(model => model.Golovi)
+        </dt>
+
+        <dd style="margin-top: 6px;">
+            @Html.DisplayFor(model => model.Golovi)
+        </dd>
+
+        <dt style="margin-top: 6px;">
+            @Html.DisplayNameFor(model => model.Asistencije):
+            @Html.HiddenFor(model => model.Asistencije)
+        </dt>
+
+        <dd style="margin-top: 6px;">
+            @Html.DisplayFor(model => model.Asistencije)
+        </dd>
+
+        <dt style="margin-top: 6px;">
+            @Html.DisplayNameFor(model => model.ZutiKartoni):
+            @Html.HiddenFor(model => model.ZutiKartoni)
+        </dt>
+
+        <dd style="margin-top: 6px;">
+            @Html.DisplayFor(model => model.ZutiKartoni)
+        </dd>
+
+        <dt style="margin-top: 6px;">
+            @Html.DisplayNameFor(model => model.CrveniKartoni):
+            @Html.HiddenFor(model => model.CrveniKartoni)
+        </dt>
+
+        <dd style="margin-top: 6px;">
+            @Html.DisplayFor(model => model.CrveniKartoni)
+        </dd>
+
+        <dt style="margin-top: 6px;">
+            @Html.DisplayNameFor(model => model.Dodavanja):
+            @Html.HiddenFor(model => model.Dodavanja)
+        </dt>
+
+        <dd style="margin-top: 6px;">
+            @Html.DisplayFor(model => model.Dodavanja)
+        </dd>
+
+        <dt style="margin-top: 6px;">
+            @Html.DisplayNameFor(model => model.UspesnaDodavanja):
+            @Html.HiddenFor(model => model.UspesnaDodavanja)
+        </dt>
+
+        <dd style="margin-top: 6px;">
+            @Html.DisplayFor(model => model.UspesnaDodavanja)
+        </dd>
+
+        <dt style="margin-top: 6px;">
+            @Html.DisplayNameFor(model => model.Prekrsaji):
+            @Html.HiddenFor(model => model.Prekrsaji)
+        </dt>
+
+        <dd style="margin-top: 6px;">
+            @Html.DisplayFor(model => model.Prekrsaji)
+        </dd>
+
+        <dt style="margin-top: 6px;">
+            @Html.DisplayNameFor(model => model.Minuti):
+            @Html.HiddenFor(model => model.Minuti)
+        </dt>
+
+        <dd style="margin-top: 6px;">
+            @Html.DisplayFor(model => model.Minuti)
+        </dd>
+
+    </dl>
+
+            <div class="form-actions no-color" style="margin-top: 30px;">
+                <input type="submit" value="Obriši" class="btn btn-danger" style="width: 130px; margin-right: 5px;" />
+                @Html.ActionLink("Vrati se nazad", "Ucinak","Ucinak",new { id= Model.RefIdIgraca } , new { @class = "btn btn-primary", @style = "width: 130px;" })
+            </div>
+        }
+    </div>
+</body>

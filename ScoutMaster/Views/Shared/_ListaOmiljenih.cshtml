@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ScoutMaster.Models.OmiljeniIgraciBO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Omiljeni igrači</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDOmiljenogIgraca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdKorisnika)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdIgraca)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDOmiljenogIgraca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdKorisnika)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdIgraca)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Obrisi iz omiljenih", "BrisiOmiljene", "Omiljeni", new { id = item.IdIgraca }, new { @class = "btn btn-success" })
+            </td>
+        </tr>
+    }
+
+</table>

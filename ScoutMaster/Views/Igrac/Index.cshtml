@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ScoutMaster.Models.IgracBO>
+
+@if (Session["Email"] == null)
+{
+    <h1>Dobrodošli u našu prvu ASP.NET MVC aplikaciju!</h1>
+    <div> <img src="~/Content/images/Logo ScoutMaster.jpg" width="350" height="400" /></div>
+
+}
+else
+{
+
+    {
+        ViewBag.Title = "Index";
+    }
+
+    {
+        string admin = Session["Admin"].ToString();
+
+        if (admin == "True")
+        {
+
+            <h2 class="naslov-pocetna" style="margin-top: 40px; margin-bottom: 30px;">Prikaz svih igrača</h2>
+
+            <div id="Igraci">
+                @{
+                    Html.RenderAction("VratiIgracePoId", "Igrac", new { id = 0 });
+                }
+            </div>
+            <br>
+            <p>
+                
+            </p>
+        }
+        else
+        {
+            <h2 class="naslov-pocetna" style="margin-top: 20px; margin-bottom: 30px;">Prikaz svih igrača</h2>
+
+            <div id="Igraci">
+                @{
+                    Html.RenderAction("VratiIgracePoId", "Igrac", new { id = 0 });
+                }
+            </div>
+        }
+    }
+
+}
+
+

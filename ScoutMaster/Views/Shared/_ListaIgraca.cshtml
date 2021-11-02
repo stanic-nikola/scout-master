@@ -1,0 +1,168 @@
+﻿@model IEnumerable<ScoutMaster.Models.IgracBO>
+
+@{
+    ViewBag.Title = "_ListaIgraca";
+}
+
+<body class="pozadina-dodaj-azu" style="height: 830px;">
+
+    @if (Session["Email"] != null)
+    {
+        string admin = Session["Admin"].ToString();
+
+        if (admin == "True")
+        {
+            @Html.ActionLink("Dodaj novog igrača", "DodajIgraca", null, new { @class = "btn btn-primary", @style = "padding: 10px 30px; margin-bottom: 10px; margin-left: -135px; margin-top: -15px;" })
+        }
+    }
+            <div class="forma-dodaj-azu" style="width: 1400px; margin-left: -140px;">
+
+                @* <p>
+                        @Html.ActionLink("Create New", "Create")
+                    </p> *@
+                <table class="table">
+                    <tr>
+                        @if (Session["Email"] != null)
+                        {
+                            string admin = Session["Admin"].ToString();
+
+                            if (admin == "True")
+                            {
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IdIgraca)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Ime) @Html.DisplayNameFor(model => model.Prezime)
+                                </th>
+
+                            }
+                            else
+                            {
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Ime)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Prezime)
+                                </th>
+                            }
+                        }
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Godiste)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Pozicija)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Klub)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Visina)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nacionalnost)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YoutubeLink)
+                        </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        {
+                            string admin = Session["Admin"].ToString();
+
+                            if (admin == "True")
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdIgraca)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink(item.Ime + " " + item.Prezime, "Ucinak", "Ucinak", new { id = item.IdIgraca }, new { @class = "font-pocetna" })
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Godiste)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Pozicija)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Klub)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Visina)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nacionalnost)
+                                    </td>
+                                    <td>
+                                        <a class="font-link-pocetna" href=@Html.DisplayFor(modelItem => item.YoutubeLink)>@Html.DisplayFor(modelItem => item.YoutubeLink)</a>
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Dodaj učinak", "DodajUcinak", "Ucinak", new { id = item.IdIgraca }, new { @class = "btn btn-success", @style = "width: 105px;" })
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Ažuriraj", "AzurirajIgraca", new { id = item.IdIgraca }, new { @class = "btn btn-warning", @style = "width: 105px;" })
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Obriši", "ObrisiIgraca", "Igrac", new { id = item.IdIgraca }, new { @class = "btn btn-danger", @style = "width: 105px;" })
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Ime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Prezime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Godiste)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Pozicija)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Klub)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Visina)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nacionalnost)
+                                    </td>
+                                    <td>
+                                        <a class="font-link-pocetna" href=@Html.DisplayFor(modelItem => item.YoutubeLink)>@Html.DisplayFor(modelItem => item.YoutubeLink)</a>
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Učinak ", "Ucinak", "Ucinak", new { id = item.IdIgraca }, new { @class = "btn btn-primary", @style = "width: 130px; margin-left: 0x; margin-right: 5px;" })
+                                        @Html.ActionLink("Dodaj u omiljene", "DodajUOmiljene", "Omiljeni", new { id = item.IdIgraca }, new { @class = "btn btn-success", @style = "width: 130px; margin-right: 0px;" })
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    }
+
+                </table>
+                @if (TempData["Error"] != null)
+                {
+                    <div class="red text-danger">
+                        <p class="poruka"><strong>Greška:</strong> @TempData["Error"].ToString()</p>
+                    </div>
+                }
+                @if (TempData["Success"] != null)
+                {
+                    <div class="green text-success">
+                        <p class="poruka"><strong>Uspešno:</strong> @TempData["Success"].ToString()</p>
+                    </div>
+                }
+            </div>
+        </body>

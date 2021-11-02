@@ -1,0 +1,27 @@
+﻿.pozadina-listaUc {
+    background-image: url('images/obrisi-igraca.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.forma-listaUc {
+    opacity: 0.7;
+    color: white;
+    background-color: #264d00;
+    border-radius: 11px;
+    border-style: solid;
+    border-color: forestgreen;
+}
+
+.font-listaUc {
+    color:white;
+}
+
+/*.table {
+    color: white;
+}
+
+table:hover {
+    color: black;
+}*/

@@ -1,0 +1,64 @@
+﻿@model ScoutMaster.Models.KorisnikBO
+
+@{
+    ViewBag.Title = "PrikazKorisnika";
+}
+
+<h2 class="naslov-dodaj-azu" style="margin-top: 30px;">Nalog</h2>
+<body class="pozadina-dodaj-azu" style="height: 800px;">
+    <div class="forma-dodaj-azu" style="margin-top: 30px;">
+        <table class="table">
+            <tr>
+                @*<th>
+            @Html.DisplayNameFor(model => model.IdKorisnika)
+        </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Ime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prezime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KorisnickoIme)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th> </th>
+            </tr>
+            <tr>
+               @*<td>
+                    @Html.DisplayFor(model => model.IdKorisnika)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(model => model.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Prezime)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.KorisnickoIme)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Ažuriraj nalog", "AzurirajNalog", new { id = Model.IdKorisnika }, new { @class = "btn btn-warning", @style = "width: 135px; margin-left: -60px;" })
+                    @Html.ActionLink("Promeni lozinku", "PromeniLozinku", new { id = Model.IdKorisnika }, new { @class = "btn btn-primary", @style = "width: 135px; margin-right: -60px;" })
+                </td>
+            </tr>
+        </table>
+        @if (TempData["Error"] != null)
+        {
+            <div class="red text-danger">
+                <p class="poruka"><strong>Greška:</strong> @TempData["Error"].ToString()</p>
+            </div>
+        }
+        @if (TempData["Success"] != null)
+        {
+            <div class="green text-success">
+                <p class="poruka"><strong>Uspešno:</strong> @TempData["Success"].ToString()</p>
+            </div>
+        }
+    </div>
+</body>

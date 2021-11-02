@@ -1,0 +1,50 @@
+﻿.pozadina-reg {
+    background-image: url('images/unos-ucinka.jpg');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+    overflow: hidden;
+}
+
+.forma-reg {
+    color: white;
+    opacity: 0.8;
+    background-color: black;
+    border-radius: 7px;
+    width: 700px;
+    height: 575px;
+    margin: auto;
+}
+
+.reg-polje {
+    background-color: white;
+    color: black;
+    font-weight: bolder;
+    width: 350px;
+}
+
+.naslov-reg {
+    font-weight: 500;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    color: white;
+    margin-top: 35px;
+}
+
+.font-reg {
+    margin-left: 28px;
+}
+
+.dugmici-reg {
+    margin-bottom: 17px;
+}
+
+.potvrdni-reg {
+    background-color: limegreen;
+    color: black;
+    padding: 9px 28px;
+    border-radius: 8px;
+    width: 160px;
+    font-weight: bolder;
+}

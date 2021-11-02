@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ScoutMaster.Models.IgracBO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="font-listaUc text-center" style="margin-top: 30px;">Omiljeni igrači</h2>
+<body class="pozadina-dodaj-azu" style="height: 800px;">
+    <div class="forma-dodaj-azu" style="margin-top: 50px; width: 1300px; margin-left: -85px;">
+        <table class="table">
+            <tr>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.IdIgraca)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Ime) i @Html.DisplayNameFor(model => model.Prezime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Godiste)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pozicija)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Klub)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Visina)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nacionalnost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.YoutubeLink)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var igrac in (ViewBag.Igrac as List<ScoutMaster.Models.IgracBO>))
+            {
+                foreach (var omiljeni in (ViewBag.Omiljeni as List<ScoutMaster.Models.OmiljeniIgraciBO>))
+                {
+                    if (igrac.IdIgraca == omiljeni.IdIgraca && omiljeni.IdKorisnika == ViewBag.Id)
+                    {
+                        {
+                            <tr>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => igrac.IdIgraca)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => igrac.Ime) @Html.DisplayFor(modelItem => igrac.Prezime)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => igrac.Godiste)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => igrac.Pozicija)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => igrac.Klub)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => igrac.Visina)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => igrac.Nacionalnost)
+                                </td>
+                                <td>
+                                    <a style="color:orange;" href="@Html.DisplayFor(modelItem => igrac.YoutubeLink)">@Html.DisplayFor(modelItem => igrac.YoutubeLink)</a>
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Učinak ", "Ucinak", "Ucinak", new { id = igrac.IdIgraca }, new { @class = "btn btn-primary", @style = "width: 130px; margin-left: 0x; margin-right: 5px;" })
+                                    @Html.ActionLink("Obriši iz omiljenih", "BrisiOmiljene", "Omiljeni", new { id = igrac.IdIgraca }, new { @class = "btn btn-danger", onclick = "return confirm('Da li ste sigurni da želite da obrišete igrača iz liste omiljenih??');" })
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+        </table>
+        @if (TempData["Error"] != null)
+        {
+            <div class="red text-danger">
+                <p class="poruka"><strong>Greška:</strong> @TempData["Error"].ToString()</p>
+            </div>
+        }
+        @if (TempData["Success"] != null)
+        {
+            <div class="green text-success">
+                <p class="poruka"><strong>Uspešno:</strong> @TempData["Success"].ToString()</p>
+            </div>
+        }
+    </div>
+</body>

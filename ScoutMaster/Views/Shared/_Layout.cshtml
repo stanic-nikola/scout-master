@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link runat="server" rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link runat="server" rel="icon" href="favicon.ico" type="image/ico" />
+    <link href="~/ikonica.ico" rel="icon" type="image/x-icon" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <link href="~/Content/ListaIgraca.css" rel="stylesheet" />
+    <link href="~/Content/dodajAzurirajIgraca.css" rel="stylesheet" />
+    <link href="~/Content/obrisiIgUtKo.css" rel="stylesheet" />
+    <link href="~/Content/listaUcinaka.css" rel="stylesheet" />
+    <link href="~/Content/registracija.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-fixed-top zaglavlje">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Scout master", "Index", "Igrac", new { area = "" }, new { @class = "navbar-brand font-pocetna" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav list-unstyled">
+                    @Html.Partial("_NavBarPartial")
+                </ul>
+                <ul>
+                    <li>@Html.Partial("_LoginPartial")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <div style="
+        height: 150px;
+        position: absolute;
+        bottom: -74px;">  
+          <hr  style="width:1100px;">
+            <footer style="margin-left: 455px;">
+                <div style="margin:auto;">
+                    <p class="copyright" style="margin-left: 900px; margin:auto;">&copy; @DateTime.Now.Year - Copyright &copy; ScoutMaster </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

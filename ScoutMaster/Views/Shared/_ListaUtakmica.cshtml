@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ScoutMaster.Models.UtakmicaBO>
+
+<body class="pozadina-dodaj-azu" style="height: 800px;">
+    @Html.ActionLink("Dodaj utakmicu", "DodajUtakmicu", "Utakmica", new { @class = "btn btn-primary", @style = "padding: 11px 26px; margin-bottom: -30px;" })
+    <div class="forma-dodaj-azu" style="margin-top: 50px;">
+        <table class="table">
+            <tr>
+                <th>
+                    Br
+                </th>
+                <th>
+                    Datum i vreme
+                </th>
+                <th>
+                    Mesto
+                </th>
+                <th>
+                    Klubovi
+                </th>
+                <th>
+                    Rezultat
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdUtakmice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Datum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mesto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Klubovi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rezultat)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Ažuriraj", "AzurirajUtakmicu", new { id = item.IdUtakmice }, new { @class = "btn btn-warning", @style = "width: 110px; margin-right: 5px;" })
+                        @Html.ActionLink("Obriši", "ObrisiUtakmicu", new { id = item.IdUtakmice }, new { @class = "btn btn-danger", @style = "width: 110px; margin-right: -35px;" })
+                    </td>
+                </tr>
+            }
+        </table>
+        @if (TempData["Error"] != null)
+        {
+            <div class="red text-danger">
+                <p class="poruka"><strong>Greška:</strong> @TempData["Error"].ToString()</p>
+            </div>
+        }
+        @if (TempData["Success"] != null)
+        {
+            <div class="green text-success">
+                <p class="poruka"><strong>Uspešno:</strong> @TempData["Success"].ToString()</p>
+            </div>
+        }
+    </div>
+</body>

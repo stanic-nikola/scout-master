@@ -1,0 +1,96 @@
+﻿@model IEnumerable<ScoutMaster.Models.IgracBO>
+
+@{
+    ViewBag.Title = "RezultatiPretrage";
+}
+
+
+<body class="pozadina-dodaj-azu" style="height: 800px;">
+    <h2 class="naslov-dodaj-azu" style="margin-top: 20px; margin-bottom: 40px;">Rezultati pretrage</h2>
+    @if (TempData["Error"] != null)
+    {
+        <div class="red text-danger">
+            <p class="poruka" style="margin-left: 85px;"><strong></strong> @TempData["Error"].ToString()</p>
+        </div>
+    }
+    @if (TempData["Success"] != null)
+    {
+        <div class="green text-success">
+            <p class="poruka" style="margin-left: 85px;"><strong></strong> @TempData["Success"].ToString()</p>
+        </div>
+    }
+
+    <div class="forma-dodaj-azu" style=" width: 1300px; margin-left: -75px;">
+        <table class="table">
+            <tr>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.IdIgraca)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Ime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prezime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Godiste)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pozicija)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Klub)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Visina)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nacionalnost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.YoutubeLink)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var igrac in (ViewBag.Igraci as List<ScoutMaster.Models.IgracBO>))
+            {
+                {
+                    <tr>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => igrac.IdIgraca)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => igrac.Ime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => igrac.Prezime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => igrac.Godiste)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => igrac.Pozicija)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => igrac.Klub)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => igrac.Visina)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => igrac.Nacionalnost)
+                        </td>
+                        <td>
+                            <a style="color: orange;" href="@Html.DisplayFor(modelItem => igrac.YoutubeLink)">@Html.DisplayFor(modelItem => igrac.YoutubeLink)</a>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Učinak ", "Ucinak", "Ucinak", new { id = igrac.IdIgraca }, new { @class = "btn btn-primary", @style = "width: 130px; margin-left: -10px; margin-right: 5px;" })
+                            @Html.ActionLink("Dodaj u omiljene", "DodajUOmiljeneIzPretrage", "Omiljeni", new { id = igrac.IdIgraca }, new { @class = "btn btn-success", @style = "width: 130px; margin-right: -28px;" })
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+    </div>
+</body>

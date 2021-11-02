@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ScoutMaster.Models.UcinakBO>
+
+<h2>Lista učinaka</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDUcinka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RefIdUtakmice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RefIdIgraca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Golovi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Asistencije)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZutiKartoni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrveniKartoni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dodavanja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UspesnaDodavanja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prekrsaji)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Minuti)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDUcinka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RefIdUtakmice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RefIdIgraca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Golovi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asistencije)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZutiKartoni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CrveniKartoni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dodavanja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UspesnaDodavanja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prekrsaji)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Minuti)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

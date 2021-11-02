@@ -1,0 +1,54 @@
+﻿.pozadina-login {
+    background-image: url('images/unos-ucinka.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 800px;
+    overflow: hidden;
+}
+
+.forma-login {
+    color: white;
+    opacity: 0.8;
+    background-color: black;
+    border-radius: 7px;
+    width: 600px;
+    height: 330px;
+    margin: auto;
+    margin-top:125px;
+}
+
+
+.login-polje{
+    background-color: white;
+    color: black;
+    font-weight: bolder;
+    margin-right: 40px;
+    width: 400px;
+}
+
+.naslov-login {
+    font-weight: 500;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 31px;
+    color: white;
+    margin-top: 150px;
+}
+
+.potvrdni-login {
+    background-color: limegreen;
+    color: black;
+    padding: 9px 28px;
+    border-radius: 8px;
+    width: 160px;
+    font-weight: bolder;
+}
+
+.crveni-login {
+    background-color: #ff0400;
+    color: black;
+    padding: 9px 28px;
+    border-radius: 8px;
+    width: 160px;
+    font-weight: bolder;
+}

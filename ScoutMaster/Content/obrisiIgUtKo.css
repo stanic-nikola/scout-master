@@ -1,0 +1,21 @@
+﻿.pozadina-obrisi {
+    background-image: url('images/obrisi-igraca.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 970px;
+    overflow: hidden;
+}
+
+.obrisi-text {
+    color: white;
+}
+
+.dugme-obrisi {
+    background-color: #0047b3;
+    color: white;
+    padding: 9px 28px;
+    border-radius: 8px;
+    width: 160px;
+    font-weight: bold;
+}

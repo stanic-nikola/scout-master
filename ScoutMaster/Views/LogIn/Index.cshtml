@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ScoutMaster.Models.IgracBO>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div id="Korisnici">
+    @{
+        Html.RenderAction("VratiKorisnikePoId", "LogIn", new { id = 0 });
+    }
+</div>
+
+

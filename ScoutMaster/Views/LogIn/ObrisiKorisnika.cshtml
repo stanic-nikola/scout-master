@@ -1,0 +1,82 @@
+﻿@model ScoutMaster.Models.KorisnikBO
+
+@{
+    ViewBag.Title = "ObrisiKorisnika";
+}
+
+<h2 style="color: white; font-size: 34px; margin-top: 35px;">Brisanje korisnika</h2>
+
+<body class="pozadina-obrisi">
+
+    <h3 style="color: white; margin-top: 32px;">Da li ste sigurni da želite da obrišete ovog korisnika?</h3>
+
+    @using (Html.BeginForm())
+    {
+        <div>
+            <hr />
+            <dl class="dl-horizontal" style="color: white; font-size: 17px;">
+                @Html.AntiForgeryToken()
+                <dt>
+                    @Html.DisplayNameFor(model => model.IdKorisnika):
+                    @Html.HiddenFor(model => model.IdKorisnika)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.IdKorisnika)
+                </dd>
+
+                <dt style="margin-top: 8px;">
+                    @Html.DisplayNameFor(model => model.KorisnickoIme)
+                    @Html.HiddenFor(model => model.KorisnickoIme)
+                </dt>
+
+                <dd style="margin-top: 8px;">
+                    @Html.DisplayFor(model => model.KorisnickoIme)
+                </dd>
+
+                <dt style="margin-top: 8px;">
+                    @Html.DisplayNameFor(model => model.Email)
+                    @Html.HiddenFor(model => model.Email)
+                </dt>
+
+                <dd style="margin-top: 8px;">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt style="margin-top: 8px;">
+                    @Html.DisplayNameFor(model => model.Lozinka)
+                    @Html.HiddenFor(model => model.Lozinka)
+                </dt>
+
+                <dd style="margin-top: 8px;">
+                    @Html.DisplayFor(model => model.Lozinka)
+                </dd>
+
+                <dt style="margin-top: 8px;">
+                    @Html.DisplayNameFor(model => model.Ime)
+                    @Html.HiddenFor(model => model.Ime)
+                </dt>
+
+                <dd style="margin-top: 8px;">
+                    @Html.DisplayFor(model => model.Ime)
+                    @Html.HiddenFor(model => model.PotvrdaLozinke)
+                </dd>
+
+                <dt style="margin-top: 8px;">
+                    @Html.DisplayNameFor(model => model.Prezime)
+                    @Html.HiddenFor(model => model.Prezime)
+                </dt>
+
+                <dd style="margin-top: 8px;">
+                    @Html.DisplayFor(model => model.Prezime)
+                </dd>
+            </dl>
+
+            <div class="form-actions no-color" style="margin-top: 40px;">
+                <input type="submit" value="Obriši korisnika" class="btn btn-danger" style="width: 130px; margin-right: 5px;" />
+                @Html.ActionLink("Vrati se nazad", "Index", null, new { @class = "btn btn-primary", @style = "width: 130px;" })
+            </div>
+
+        </div>
+    }
+    </body>

@@ -1,0 +1,100 @@
+﻿@model ScoutMaster.Models.IgracBO
+
+@{
+    ViewBag.Title = "AzurirajIgraca";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<body class="pozadina-dodaj-azu">
+    <div class="forma-dodaj-azu" style="margin-top: 50px; margin-bottom: 200px;">
+    <div class="form-horizontal">
+        <h4 class="naslov-dodaj-azu">Ažuriranje igrača</h4>
+        <br>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.IdIgraca)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ime, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                @Html.ValidationMessageFor(model => model.Ime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Prezime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Prezime, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                @Html.ValidationMessageFor(model => model.Prezime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Godiste, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Godiste, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                @Html.ValidationMessageFor(model => model.Godiste, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pozicija, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Pozicija, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                @Html.ValidationMessageFor(model => model.Pozicija, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Klub, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Klub, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                @Html.ValidationMessageFor(model => model.Klub, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Visina, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Visina, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                @Html.ValidationMessageFor(model => model.Visina, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nacionalnost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nacionalnost, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                @Html.ValidationMessageFor(model => model.Nacionalnost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 23px;">
+            @Html.LabelFor(model => model.YoutubeLink, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.YoutubeLink, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                @Html.ValidationMessageFor(model => model.YoutubeLink, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Ažuriraj igrača" class="btn btn-success" style="width: 130px; margin-right: 5px; margin-bottom: 20px;" />
+                @Html.ActionLink("Vrati nazad", "Index", null, new { @class = "btn btn-primary", @style = "width: 130px; margin-bottom: 20px;" })
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

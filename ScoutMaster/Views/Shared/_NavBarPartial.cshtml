@@ -1,0 +1,28 @@
+﻿@if (Session["Email"] == null)
+{
+
+
+}
+else
+{
+    string admin = Session["Admin"].ToString();
+    if (admin == "True")
+    {
+        <ul class="nav navbar-nav navbar-left list-unstyled">
+            <li>@Html.ActionLink("Igrači", "Index", "Igrac",null, new { @class = "font-pocetna" })</li>
+            <li>@Html.ActionLink("Utakmice", "Index", "Utakmica",null, new { @class = "font-pocetna" })</li>
+            @*<li>@Html.ActionLink("Pretraga", "Pretraga", "Pretraga",null, new { @class = "font-pocetna" })</li>*@
+            <li>@Html.ActionLink("Korisnici", "Index", "LogIn",null, new { @class = "font-pocetna" })</li>
+        </ul>
+    }
+    else
+    {
+<ul class="nav navbar-nav navbar-left list-unstyled">
+    @*<li>@Html.RenderAction("VratiIdKorisnika", "LogIn", new { id = 0 })</li>*@
+    <li>@Html.ActionLink("Igrači", "Index", "Igrac", null, new { @class = "font-pocetna" })</li>
+    <li>@Html.ActionLink("Omiljeni igrači", "Index", "Omiljeni", null, new { @class = "font-pocetna" })</li>
+    <li>@Html.ActionLink("Pretraga", "Pretraga", "Pretraga", null, new { @class = "font-pocetna" })</li>
+</ul>
+    }
+}
+

@@ -1,0 +1,54 @@
+﻿.pozadina-dodaj-azu {
+    background-image: url('images/unos_utakmice.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    overflow: hidden;
+}
+
+.textbox {
+    background-color: white;
+    color: black;
+    font-weight: bolder;
+    width: 80%;
+}
+
+.copyright {
+    color: white;
+}
+
+.forma-dodaj-azu {
+    color: white;
+    opacity: 0.8;
+    background-color: #003366;
+    border-radius: 11px;
+    border-style: solid;
+    border-color: #000066;
+    /*width: 1100px;*/
+}
+
+.naslov-dodaj-azu {
+    font-weight: 500;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    color: white;
+}
+
+.potvrdni-dodaj-azu {
+    background-color: limegreen;
+    color: black;
+    padding: 9px 28px;
+    border-radius: 8px;
+    width: 160px;
+    font-weight: bold;
+}
+
+.obrisi-dodaj-azu {
+    background-color: #ff0400;
+    color: black;
+    padding: 9px 28px;
+    border-radius: 8px;
+    width: 160px;
+    font-weight: bold;
+}

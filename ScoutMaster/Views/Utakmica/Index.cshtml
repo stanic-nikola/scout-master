@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ScoutMaster.Models.UtakmicaBO>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2 class="naslov-pocetna">Prikaz svih utakmica</h2>
+
+@*<div class="row">
+        <div class="col-md-4">
+            <label class="label">Utakmice:</label>
+            @Html.DropDownList("Utakmice", new SelectList(ViewBag.Utakmice, "IdUtakmice","Klubovi"), new {@class = "form-control"})
+        </div>
+    </div>*@
+
+<div id="Utakmice">
+    @{
+        Html.RenderAction("VratiUtakmicuPoId", "Utakmica", new { id = 0 });
+    }
+</div>
+<br>
+<div>
+    
+</div>

@@ -1,0 +1,64 @@
+﻿@model ScoutMaster.Models.UtakmicaBO
+
+@{
+    ViewBag.Title = "DodajUtakmicu";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <body class="pozadina-dodaj-azu">
+        <div class="forma-dodaj-azu" style="margin-top: 80px; margin-bottom: 300px;">
+            <div class="form-horizontal">
+                <h2 class="naslov-dodaj-azu">Dodaj novu utakmicu</h2>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group" style="margin-top: 40px;">
+                    @Html.LabelFor(model => model.Datum, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Datum, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                        @Html.ValidationMessageFor(model => model.Datum, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 30px;">
+                    @Html.LabelFor(model => model.Mesto, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Mesto, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                        @Html.ValidationMessageFor(model => model.Mesto, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 30px;">
+                    @Html.LabelFor(model => model.Klubovi, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Klubovi, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                        @Html.ValidationMessageFor(model => model.Klubovi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 30px;">
+                    @Html.LabelFor(model => model.Rezultat, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Rezultat, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                        @Html.ValidationMessageFor(model => model.Rezultat, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 25px; margin-bottom: 40px;">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Dodaj utakmicu" class="btn btn-success" style="width: 130px; margin-right: 5px;" />
+                        @Html.ActionLink("Vrati se nazad", "Index", null, new { @class = "btn btn-primary", @style = "width: 130px;" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,98 @@
+﻿@model ScoutMaster.Models.IgracBO
+
+@{
+    ViewBag.Title = "Pretraga";
+}
+
+<body class="pozadina-dodaj-azu" style="height: 800px;">
+    <h2 class="naslov-dodaj-azu" style="margin-top: 20px; margin-bottom: 40px;">Pretraga</h2>
+    @if (TempData["Error"] != null)
+    {
+        <div class="red text-danger">
+            <p class="poruka" style="margin-left: 85px;"><strong></strong> @TempData["Error"].ToString()</p>
+        </div>
+    }
+    @if (TempData["Success"] != null)
+    {
+        <div class="green text-success">
+            <p class="poruka" style="margin-left: 85px;"><strong></strong> @TempData["Success"].ToString()</p>
+        </div>
+    }
+    <div class="forma-dodaj-azu" style="margin-left: 20px;">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group" style="margin-top: 45px; margin-bottom: 25px;">
+                    @Html.LabelFor(model => model.Ime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Ime, new { htmlAttributes = new { @class = "form-control", @style = "width: 800px;" } })
+                        @Html.ValidationMessageFor(model => model.Ime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    @Html.LabelFor(model => model.Prezime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Prezime, new { htmlAttributes = new { @class = "form-control", @style = "width: 800px;" } })
+                        @Html.ValidationMessageFor(model => model.Prezime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    @Html.LabelFor(model => model.Godiste, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.GodisteOd, new { htmlAttributes = new { placeholder = "Od", @class = "form-control", @style = "width: 250px; margin-top: 5px; margin-bottom: 4px;" } })
+                        @Html.ValidationMessageFor(model => model.GodisteOd, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.GodisteDo, new { htmlAttributes = new { placeholder = "Do", @class = "form-control", @style = "width: 250px; margin-left: 400px; margin-top: -38px; margin-bottom: 4px;" } })
+                        @Html.ValidationMessageFor(model => model.GodisteDo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    @Html.LabelFor(model => model.Pozicija, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Pozicija, new { htmlAttributes = new { @class = "form-control", @style = "width: 800px;" } })
+                        @Html.ValidationMessageFor(model => model.Pozicija, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    @Html.LabelFor(model => model.Klub, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Klub, new { htmlAttributes = new { @class = "form-control", @style = "width: 800px;" } })
+                        @Html.ValidationMessageFor(model => model.Klub, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    @Html.LabelFor(model => model.Nacionalnost, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Nacionalnost, new { htmlAttributes = new { @class = "form-control", @style = "width: 800px;" } })
+                        @Html.ValidationMessageFor(model => model.Nacionalnost, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Visina, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.VisinaOd, new { htmlAttributes = new { placeholder = "Od", @class = "form-control", @style = "width: 250px;" } })
+                        @Html.ValidationMessageFor(model => model.VisinaOd, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.VisinaDo, new { htmlAttributes = new { placeholder = "Do", @class = "form-control", @style = "width: 250px; margin-left: 400px; margin-top: -33px;" } })
+                        @Html.ValidationMessageFor(model => model.VisinaDo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 30px; margin-bottom: 35px; margin-left: 300px;">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Pretraga" class="btn btn-success" style="width: 130px;" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</body>

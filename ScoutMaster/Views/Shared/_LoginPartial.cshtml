@@ -1,0 +1,37 @@
+﻿@if (Session["Email"] == null)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Registracija", "Registracija", "LogIn", null, new { @class = "font-pocetna" })
+        </li>
+        <li>
+            @Html.ActionLink("Prijava", "Login", "LogIn", null, new { @class = "font-pocetna" })
+        </li>
+    </ul>
+}
+else
+{
+    string admin = Session["Admin"].ToString();
+    if (admin == "True")
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("" + Session["Email"], "Index", "Igrac", new { korisnickoIme = Session["Email"] }, new { @class = "font-pocetna" })
+            </li>
+            <li>
+                @Html.ActionLink("Odjavi se", "Logout", "LogIn", null, new { @class = "font-pocetna" })
+            </li>
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("" + Session["Email"], "VratiKorisnikaPoEmail", "LogIn", new { email = Session["Email"] }, new { @class = "font-pocetna" })
+            </li>
+            <li>
+                @Html.ActionLink("Odjavi se", "Logout", "LogIn", null, new { @class = "font-pocetna" })
+            </li>
+        </ul>
+    }
+}

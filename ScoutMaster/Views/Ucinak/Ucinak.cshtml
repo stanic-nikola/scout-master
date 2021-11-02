@@ -1,0 +1,149 @@
+﻿@model IEnumerable<ScoutMaster.Models.IgracBO>
+
+@{
+    ViewBag.Title = "Ucinak";
+}
+
+<h1 class="font-listaUc text-center" style="margin-bottom: 50px;">@ViewBag.Igrac.Ime @ViewBag.Igrac.Prezime</h1>
+<body class="pozadina-dodaj-azu" style="height: 800px;">
+
+    @if (Session["Email"] != null)
+    {
+        string admin = Session["Admin"].ToString();
+        if (admin == "True")
+        {
+            @Html.ActionLink("Dodaj učinak", "DodajUcinak", "Ucinak", new { id = ViewBag.Igrac.IdIgraca }, new { @class = "btn btn-success", @style = "width: 140px; padding: 12px; margin-top: -30px; margin-left: -130px;" })
+        }
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="red text-danger">
+            <p class="poruka"><strong>Greška:</strong> @TempData["Error"].ToString()</p>
+        </div>
+    }
+    @if (TempData["Success"] != null)
+    {
+        <div class="green text-success">
+            <p class="poruka" style="margin-left: 80px;"><strong>Uspešno:</strong> @TempData["Success"].ToString()</p>
+        </div>
+    }
+
+    @foreach (var utakmica in (ViewBag.Utakmica as List<ScoutMaster.Models.UtakmicaBO>))
+    {
+        foreach (var ucinak in (ViewBag.Ucinak as List<ScoutMaster.Models.UcinakBO>))
+        {
+            if (ucinak.RefIdUtakmice == utakmica.IdUtakmice && ucinak.RefIdIgraca == ViewBag.Igrac.IdIgraca)
+            {
+                <div class="forma-dodaj-azu" style="width: 1450px; margin-left: -142px; margin-top: 7px;">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Utakmica
+                            </th>
+
+                            <th>
+                                Vreme
+                            </th>
+
+                            @if (Session["Email"] != null)
+                            {
+                                string admin = Session["Admin"].ToString();
+                                if (admin == "True")
+                                {
+                                    <th>
+                                        Id Učinka
+                                    </th>
+                                }
+                            }
+
+                            <th>
+                                Golovi
+                            </th>
+                            <th>
+                                Asistencije
+                            </th>
+                            <th>
+                                Žuti kartoni
+                            </th>
+                            <th>
+                                Crveni Kartoni
+                            </th>
+                            <th>
+                                Dodavanja
+                            </th>
+                            <th>
+                                Uspešna dodavanja
+                            </th>
+                            <th>
+                                Prekršaji
+                            </th>
+                            <th>
+                                Minuti
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                @utakmica.Klubovi
+                            </td>
+                            <td>
+                                @utakmica.Datum
+                            </td>
+
+                            @if (Session["Email"] != null)
+                            {
+                                string admin = Session["Admin"].ToString();
+                                if (admin == "True")
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => ucinak.IDUcinka)
+                                    </td>
+                                }
+                            }
+
+                            <td>
+                                @Html.DisplayFor(modelItem => ucinak.Golovi)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => ucinak.Asistencije)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => ucinak.ZutiKartoni)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => ucinak.CrveniKartoni)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => ucinak.Dodavanja)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => ucinak.UspesnaDodavanja)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => ucinak.Prekrsaji)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => ucinak.Minuti)
+                            </td>
+                            @if (Session["Email"] != null)
+                            {
+                                string admin = Session["Admin"].ToString();
+                                if (admin == "True")
+                                {
+                        <td>
+                            @Html.ActionLink("Ažuriraj učinak", "AzurirajUcinak", new { id = ucinak.IDUcinka }, new { @class = "btn btn-warning", @style = "width: 130px; margin-right: 5px;" })
+                            @Html.ActionLink("Obriši učinak", "ObrisiUcinak", new { id = ucinak.IDUcinka }, new { @class = "btn btn-danger", @style = "width: 130px;" })
+                        </td>
+                                }
+                            }
+                        </tr>
+
+
+                    </table>
+                </div>
+            }
+        }
+    }
+
+</body>

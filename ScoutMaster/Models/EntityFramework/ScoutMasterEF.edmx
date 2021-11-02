@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ScoutMasterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="IDAdmina" />
+          </Key>
+          <Property Name="IDAdmina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="korisnickoIme" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lozinka" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Igrac">
+          <Key>
+            <PropertyRef Name="IDigraca" />
+          </Key>
+          <Property Name="IDigraca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ime" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="prezime" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="godiste" Type="int" Nullable="false" />
+          <Property Name="pozicija" Type="nvarchar" MaxLength="30" />
+          <Property Name="klub" Type="nvarchar" MaxLength="60" />
+          <Property Name="visina" Type="int" Nullable="false" />
+          <Property Name="nacionalnost" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="youtubeLink" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="IDKorisnika" />
+          </Key>
+          <Property Name="IDKorisnika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="korisnickoIme" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="lozinka" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ime" Type="nvarchar" MaxLength="40" />
+          <Property Name="prezime" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="OmiljeniIgraci">
+          <Key>
+            <PropertyRef Name="IDOmiljenogIgraca" />
+          </Key>
+          <Property Name="IDOmiljenogIgraca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDKorisnika" Type="int" Nullable="false" />
+          <Property Name="IDIgraca" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ucinak">
+          <Key>
+            <PropertyRef Name="IDUcinka" />
+          </Key>
+          <Property Name="IDUcinka" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDutakmice" Type="int" Nullable="false" />
+          <Property Name="IDigraca" Type="int" Nullable="false" />
+          <Property Name="golovi" Type="int" />
+          <Property Name="asistencije" Type="int" />
+          <Property Name="zutiKartoni" Type="int" />
+          <Property Name="crveniKartoni" Type="int" />
+          <Property Name="dodavanja" Type="int" />
+          <Property Name="uspesnaDodavanja" Type="int" />
+          <Property Name="prekrsaji" Type="int" />
+          <Property Name="minuti" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Utakmica">
+          <Key>
+            <PropertyRef Name="IDutakmice" />
+          </Key>
+          <Property Name="IDutakmice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="datum" Type="datetime" Nullable="false" />
+          <Property Name="mesto" Type="nvarchar" MaxLength="50" />
+          <Property Name="klubovi" Type="nvarchar" MaxLength="120" />
+          <Property Name="rezultat" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__OmiljeniI__IDIgr__3E52440B">
+          <End Role="Igrac" Type="Self.Igrac" Multiplicity="1" />
+          <End Role="OmiljeniIgraci" Type="Self.OmiljeniIgraci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Igrac">
+              <PropertyRef Name="IDigraca" />
+            </Principal>
+            <Dependent Role="OmiljeniIgraci">
+              <PropertyRef Name="IDIgraca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OmiljeniI__IDKor__3D5E1FD2">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="OmiljeniIgraci" Type="Self.OmiljeniIgraci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="IDKorisnika" />
+            </Principal>
+            <Dependent Role="OmiljeniIgraci">
+              <PropertyRef Name="IDKorisnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ucinak__IDigraca__4316F928">
+          <End Role="Igrac" Type="Self.Igrac" Multiplicity="1" />
+          <End Role="Ucinak" Type="Self.Ucinak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Igrac">
+              <PropertyRef Name="IDigraca" />
+            </Principal>
+            <Dependent Role="Ucinak">
+              <PropertyRef Name="IDigraca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ucinak__IDutakmi__440B1D61">
+          <End Role="Utakmica" Type="Self.Utakmica" Multiplicity="1" />
+          <End Role="Ucinak" Type="Self.Ucinak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utakmica">
+              <PropertyRef Name="IDutakmice" />
+            </Principal>
+            <Dependent Role="Ucinak">
+              <PropertyRef Name="IDutakmice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScoutMasterModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Igrac" EntityType="Self.Igrac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OmiljeniIgraci" EntityType="Self.OmiljeniIgraci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ucinak" EntityType="Self.Ucinak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utakmica" EntityType="Self.Utakmica" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__OmiljeniI__IDIgr__3E52440B" Association="Self.FK__OmiljeniI__IDIgr__3E52440B">
+            <End Role="Igrac" EntitySet="Igrac" />
+            <End Role="OmiljeniIgraci" EntitySet="OmiljeniIgraci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OmiljeniI__IDKor__3D5E1FD2" Association="Self.FK__OmiljeniI__IDKor__3D5E1FD2">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="OmiljeniIgraci" EntitySet="OmiljeniIgraci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ucinak__IDigraca__4316F928" Association="Self.FK__Ucinak__IDigraca__4316F928">
+            <End Role="Igrac" EntitySet="Igrac" />
+            <End Role="Ucinak" EntitySet="Ucinak" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ucinak__IDutakmi__440B1D61" Association="Self.FK__Ucinak__IDutakmi__440B1D61">
+            <End Role="Utakmica" EntitySet="Utakmica" />
+            <End Role="Ucinak" EntitySet="Ucinak" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScoutMasterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="IDAdmina" />
+          </Key>
+          <Property Name="IDAdmina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="korisnickoIme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lozinka" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Igrac">
+          <Key>
+            <PropertyRef Name="IDigraca" />
+          </Key>
+          <Property Name="IDigraca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="prezime" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="godiste" Type="Int32" Nullable="false" />
+          <Property Name="pozicija" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="klub" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="visina" Type="Int32" Nullable="false" />
+          <Property Name="nacionalnost" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="youtubeLink" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OmiljeniIgraci" Relationship="Self.FK__OmiljeniI__IDIgr__3E52440B" FromRole="Igrac" ToRole="OmiljeniIgraci" />
+          <NavigationProperty Name="Ucinak" Relationship="Self.FK__Ucinak__IDigraca__4316F928" FromRole="Igrac" ToRole="Ucinak" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="IDKorisnika" />
+          </Key>
+          <Property Name="IDKorisnika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="korisnickoIme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lozinka" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ime" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="prezime" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OmiljeniIgraci" Relationship="Self.FK__OmiljeniI__IDKor__3D5E1FD2" FromRole="Korisnik" ToRole="OmiljeniIgraci" />
+        </EntityType>
+        <EntityType Name="OmiljeniIgraci">
+          <Key>
+            <PropertyRef Name="IDOmiljenogIgraca" />
+          </Key>
+          <Property Name="IDOmiljenogIgraca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDKorisnika" Type="Int32" Nullable="false" />
+          <Property Name="IDIgraca" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Igrac" Relationship="Self.FK__OmiljeniI__IDIgr__3E52440B" FromRole="OmiljeniIgraci" ToRole="Igrac" />
+          <NavigationProperty Name="Korisnik" Relationship="Self.FK__OmiljeniI__IDKor__3D5E1FD2" FromRole="OmiljeniIgraci" ToRole="Korisnik" />
+        </EntityType>
+        <EntityType Name="Ucinak">
+          <Key>
+            <PropertyRef Name="IDUcinka" />
+          </Key>
+          <Property Name="IDUcinka" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDutakmice" Type="Int32" Nullable="false" />
+          <Property Name="IDigraca" Type="Int32" Nullable="false" />
+          <Property Name="golovi" Type="Int32" />
+          <Property Name="asistencije" Type="Int32" />
+          <Property Name="zutiKartoni" Type="Int32" />
+          <Property Name="crveniKartoni" Type="Int32" />
+          <Property Name="dodavanja" Type="Int32" />
+          <Property Name="uspesnaDodavanja" Type="Int32" />
+          <Property Name="prekrsaji" Type="Int32" />
+          <Property Name="minuti" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Igrac" Relationship="Self.FK__Ucinak__IDigraca__4316F928" FromRole="Ucinak" ToRole="Igrac" />
+          <NavigationProperty Name="Utakmica" Relationship="Self.FK__Ucinak__IDutakmi__440B1D61" FromRole="Ucinak" ToRole="Utakmica" />
+        </EntityType>
+        <EntityType Name="Utakmica">
+          <Key>
+            <PropertyRef Name="IDutakmice" />
+          </Key>
+          <Property Name="IDutakmice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="datum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="mesto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="klubovi" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="rezultat" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ucinak" Relationship="Self.FK__Ucinak__IDutakmi__440B1D61" FromRole="Utakmica" ToRole="Ucinak" />
+        </EntityType>
+        <Association Name="FK__OmiljeniI__IDIgr__3E52440B">
+          <End Role="Igrac" Type="Self.Igrac" Multiplicity="1" />
+          <End Role="OmiljeniIgraci" Type="Self.OmiljeniIgraci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Igrac">
+              <PropertyRef Name="IDigraca" />
+            </Principal>
+            <Dependent Role="OmiljeniIgraci">
+              <PropertyRef Name="IDIgraca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ucinak__IDigraca__4316F928">
+          <End Role="Igrac" Type="Self.Igrac" Multiplicity="1" />
+          <End Role="Ucinak" Type="Self.Ucinak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Igrac">
+              <PropertyRef Name="IDigraca" />
+            </Principal>
+            <Dependent Role="Ucinak">
+              <PropertyRef Name="IDigraca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OmiljeniI__IDKor__3D5E1FD2">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="OmiljeniIgraci" Type="Self.OmiljeniIgraci" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="IDKorisnika" />
+            </Principal>
+            <Dependent Role="OmiljeniIgraci">
+              <PropertyRef Name="IDKorisnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ucinak__IDutakmi__440B1D61">
+          <End Role="Utakmica" Type="Self.Utakmica" Multiplicity="1" />
+          <End Role="Ucinak" Type="Self.Ucinak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utakmica">
+              <PropertyRef Name="IDutakmice" />
+            </Principal>
+            <Dependent Role="Ucinak">
+              <PropertyRef Name="IDutakmice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScoutMasterEntiteti" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Igrac" EntityType="Self.Igrac" />
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" />
+          <EntitySet Name="OmiljeniIgraci" EntityType="Self.OmiljeniIgraci" />
+          <EntitySet Name="Ucinak" EntityType="Self.Ucinak" />
+          <EntitySet Name="Utakmica" EntityType="Self.Utakmica" />
+          <AssociationSet Name="FK__OmiljeniI__IDIgr__3E52440B" Association="Self.FK__OmiljeniI__IDIgr__3E52440B">
+            <End Role="Igrac" EntitySet="Igrac" />
+            <End Role="OmiljeniIgraci" EntitySet="OmiljeniIgraci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ucinak__IDigraca__4316F928" Association="Self.FK__Ucinak__IDigraca__4316F928">
+            <End Role="Igrac" EntitySet="Igrac" />
+            <End Role="Ucinak" EntitySet="Ucinak" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OmiljeniI__IDKor__3D5E1FD2" Association="Self.FK__OmiljeniI__IDKor__3D5E1FD2">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="OmiljeniIgraci" EntitySet="OmiljeniIgraci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ucinak__IDutakmi__440B1D61" Association="Self.FK__Ucinak__IDutakmi__440B1D61">
+            <End Role="Utakmica" EntitySet="Utakmica" />
+            <End Role="Ucinak" EntitySet="Ucinak" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ScoutMasterModelStoreContainer" CdmEntityContainer="ScoutMasterEntiteti">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="ScoutMasterModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="IDAdmina" ColumnName="IDAdmina" />
+                <ScalarProperty Name="korisnickoIme" ColumnName="korisnickoIme" />
+                <ScalarProperty Name="lozinka" ColumnName="lozinka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Igrac">
+            <EntityTypeMapping TypeName="ScoutMasterModel.Igrac">
+              <MappingFragment StoreEntitySet="Igrac">
+                <ScalarProperty Name="IDigraca" ColumnName="IDigraca" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="godiste" ColumnName="godiste" />
+                <ScalarProperty Name="pozicija" ColumnName="pozicija" />
+                <ScalarProperty Name="klub" ColumnName="klub" />
+                <ScalarProperty Name="visina" ColumnName="visina" />
+                <ScalarProperty Name="nacionalnost" ColumnName="nacionalnost" />
+                <ScalarProperty Name="youtubeLink" ColumnName="youtubeLink" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korisnik">
+            <EntityTypeMapping TypeName="ScoutMasterModel.Korisnik">
+              <MappingFragment StoreEntitySet="Korisnik">
+                <ScalarProperty Name="IDKorisnika" ColumnName="IDKorisnika" />
+                <ScalarProperty Name="korisnickoIme" ColumnName="korisnickoIme" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="lozinka" ColumnName="lozinka" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OmiljeniIgraci">
+            <EntityTypeMapping TypeName="ScoutMasterModel.OmiljeniIgraci">
+              <MappingFragment StoreEntitySet="OmiljeniIgraci">
+                <ScalarProperty Name="IDOmiljenogIgraca" ColumnName="IDOmiljenogIgraca" />
+                <ScalarProperty Name="IDKorisnika" ColumnName="IDKorisnika" />
+                <ScalarProperty Name="IDIgraca" ColumnName="IDIgraca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ucinak">
+            <EntityTypeMapping TypeName="ScoutMasterModel.Ucinak">
+              <MappingFragment StoreEntitySet="Ucinak">
+                <ScalarProperty Name="IDUcinka" ColumnName="IDUcinka" />
+                <ScalarProperty Name="IDutakmice" ColumnName="IDutakmice" />
+                <ScalarProperty Name="IDigraca" ColumnName="IDigraca" />
+                <ScalarProperty Name="golovi" ColumnName="golovi" />
+                <ScalarProperty Name="asistencije" ColumnName="asistencije" />
+                <ScalarProperty Name="zutiKartoni" ColumnName="zutiKartoni" />
+                <ScalarProperty Name="crveniKartoni" ColumnName="crveniKartoni" />
+                <ScalarProperty Name="dodavanja" ColumnName="dodavanja" />
+                <ScalarProperty Name="uspesnaDodavanja" ColumnName="uspesnaDodavanja" />
+                <ScalarProperty Name="prekrsaji" ColumnName="prekrsaji" />
+                <ScalarProperty Name="minuti" ColumnName="minuti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utakmica">
+            <EntityTypeMapping TypeName="ScoutMasterModel.Utakmica">
+              <MappingFragment StoreEntitySet="Utakmica">
+                <ScalarProperty Name="IDutakmice" ColumnName="IDutakmice" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="mesto" ColumnName="mesto" />
+                <ScalarProperty Name="klubovi" ColumnName="klubovi" />
+                <ScalarProperty Name="rezultat" ColumnName="rezultat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

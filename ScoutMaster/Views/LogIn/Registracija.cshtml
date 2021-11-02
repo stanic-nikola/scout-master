@@ -1,0 +1,82 @@
+﻿@model ScoutMaster.Models.KorisnikBO
+
+@{
+    ViewBag.Title = "Registracija";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <body class="pozadina-reg">
+        <div class="forma-reg" style="height: 680px;">
+            <div class="form-horizontal" style="">
+                <h2 class="naslov-reg" style="margin-top: 100px;">Registracija</h2>
+                <br>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group" style="margin-top: 20px;">
+                    @Html.LabelFor(model => model.Ime, htmlAttributes: new { @class = "control-label col-md-2 font-reg" , @style = "margin-right: -3000px; margin-left: 30px; " })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Ime, new { htmlAttributes = new { @class = "form-control reg-polje", @style = "margin-bottom: 20px; margin-left: 140px; width: 450px; " } })
+                        @Html.ValidationMessageFor(model => model.Ime, "", new { @class = "text-danger", @style = "margin-left: 17px;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Prezime, htmlAttributes: new { @class = "control-label col-md-2 font-reg", @style = "margin-right: -3000px; margin-left: 30px; " })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Prezime, new { htmlAttributes = new { @class = "form-control reg-polje", @style = "margin-bottom: 20px; margin-left: 140px; width: 450px; " } })
+                        @Html.ValidationMessageFor(model => model.Prezime, "", new { @class = "text-danger", @style = "margin-left: 17px;" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.KorisnickoIme, htmlAttributes: new { @class = "control-label  font-reg", @style = "margin-left: -574px;" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.KorisnickoIme, new { htmlAttributes = new { @class = "form-control reg-polje", @style = "margin-bottom: 20px;  margin-left: 140px; width: 450px; " } })
+                        @Html.ValidationMessageFor(model => model.KorisnickoIme, "", new { @class = "text-danger", @style = "margin-left: 17px;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2 font-reg", @style = "margin-right: -3000px; margin-left: 30px;" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control reg-polje", @style = "margin-bottom: 20px; margin-left: 140px; width: 450px;  " } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", @style = "margin-left: 17px;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Lozinka, htmlAttributes: new { @class = "control-label col-md-2 font-reg", @style = "margin-left: 30px;" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.Lozinka, new { @class = "form-control reg-polje", @style = "margin-bottom: 20px; margin-left: 140px; margin-top: -25px; width: 450px; " })
+                        @Html.ValidationMessageFor(model => model.Lozinka, "", new { @class = "text-danger", @style = "margin-left: 17px;" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PotvrdaLozinke, htmlAttributes: new { @class = "control-label font-reg", @style = "margin-left: -574px;" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.PotvrdaLozinke, new { @class = "form-control reg-polje", @style = "margin-bottom: 20px; margin-left: 140px; width: 450px; " })
+                        @Html.ValidationMessageFor(model => model.PotvrdaLozinke, "", new { @class = "text-danger", @style = "margin-left: 17px;" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-10 dugmici-reg">
+                        <input type="submit" value="Registruj se" class="btn btn-success" style="margin-right: 17px; width: 120px; margin-left: 17px;" />
+                        @Html.ActionLink("Već imam nalog", "Login", "LogIn", new { @class = "btn btn-warning", @style = "width: 120px;" })
+                    </div>
+                </div>
+
+                <div>
+                    @Html.ValidationMessage("Greska", null, new { @class = "text text-danger" })
+                </div>
+            </div>
+        </div>
+    </body>
+}

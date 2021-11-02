@@ -1,0 +1,74 @@
+﻿@model ScoutMaster.Models.KorisnikBO
+
+@{
+    ViewBag.Title = "AzurirajKorisnika";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<body class="pozadina-dodaj-azu" style="height: 800px;">
+    <div class="forma-dodaj-azu" style="margin-top: 60px; height: 440px;">
+        <div class="form-horizontal">
+            <h4 class="naslov-dodaj-azu">Ažuriranje korisnika</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.IdKorisnika)
+            <div class="form-group" style="margin-top: 45px;">
+                @Html.LabelFor(model => model.KorisnickoIme, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.KorisnickoIme, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                    @Html.ValidationMessageFor(model => model.KorisnickoIme, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 25px;">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="form-group" style="margin-top: 25px;">
+                @Html.LabelFor(model => model.PotvrdaLozinke, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PotvrdaLozinke, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                    @Html.ValidationMessageFor(model => model.PotvrdaLozinke, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            <div class="form-group" style="margin-top: 25px;">
+                @Html.LabelFor(model => model.Ime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ime, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                    @Html.ValidationMessageFor(model => model.Ime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 25px;">
+                @Html.LabelFor(model => model.Prezime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Prezime, new { htmlAttributes = new { @class = "form-control textbox", @style = "width: 800px;" } })
+                    @Html.ValidationMessageFor(model => model.Prezime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 35px; margin-bottom: 25px;">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Ažuriraj korisnika" class="btn btn-success" style="width: 130px; margin-right: 5px;" />
+                    @Html.ActionLink("Vrati se nazad", "Index", null, new { @class = "btn btn-primary", @style = "width: 130px;" })
+                </div>
+            </div>
+        </div>
+     </div>
+</body>
+        }
+
+@section Scripts 
+    {
+     @Scripts.Render("~/bundles/jqueryval")
+    }
